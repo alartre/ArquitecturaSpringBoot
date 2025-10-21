@@ -24,4 +24,23 @@ public class PersonaController {
     public Persona crearPersona(@RequestBody PersonaDTO personaDTO) {
         return personaService.crearPersona(personaDTO);
     }
+
+    //Query
+    @GetMapping("/mayores")
+    public List<PersonaDTO> getMayoresDe(@RequestParam Integer edad) {
+        return personaService.mayoresDeEdad(edad);
+    }
+
+    //JPQL
+    @GetMapping("/buscar")
+    public List<PersonaDTO> buscarPorNombre(@RequestParam String nombre) {
+        return personaService.buscarPorNombre(nombre);
+    }
+
+    //Native SQL
+    @GetMapping("/edad")
+    public List<PersonaDTO> buscarPorEdad(@RequestParam int edad) {
+        return personaService.buscarPorEdadExacta(edad);
+    }
+
 }

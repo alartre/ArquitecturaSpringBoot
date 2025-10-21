@@ -31,4 +31,32 @@ public class PersonaService {
         Persona persona = new Persona(null, personaDTO.getNombre(), personaDTO.getEdad());
         return personaRepository.save(persona);
     }
+
+    //Query
+    public List<PersonaDTO> mayoresDeEdad(Integer edad) {
+        return personaRepository.findByEdadGreaterThan(edad).stream()
+                .map(this::convertirADTO)
+                .toList();
+    }
+
+    //JPQL
+    public List<PersonaDTO> buscarPorNombre(String filtro) {
+        return personaRepository.buscarPorNombre(filtro)
+                .stream()
+                .map(this::convertirADTO)
+                .toList();
+    }
+
+    //Native SQL
+    public List<PersonaDTO> buscarPorEdadExacta(int edad) {
+        return personaRepository.buscarPorEdadExacta(edad)
+                .stream()
+                .map(this::convertirADTO)
+                .toList();
+    }
+
+    //Debería estar en un Mapper
+    private PersonaDTO convertirADTO(Persona persona) {
+        return new PersonaDTO(persona.getNombre(), persona.getEdad());
+    }
 }
