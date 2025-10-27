@@ -4,6 +4,8 @@ import com.scalian.ArquitecturaSpringBoot.model.dto.PersonaDTO;
 import com.scalian.ArquitecturaSpringBoot.model.entity.Persona;
 import com.scalian.ArquitecturaSpringBoot.service.PersonaService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
