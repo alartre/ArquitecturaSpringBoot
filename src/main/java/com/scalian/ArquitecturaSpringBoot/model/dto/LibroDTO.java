@@ -5,9 +5,10 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonaDTO {
+public class LibroDTO {
     //No queremos que muestre el campo ID.
-    @Getter @Setter private String nombre;
-    @Getter @Setter private int edad;
+    private String titulo;
+    private String autor;
+    private int paginas;
 
 }

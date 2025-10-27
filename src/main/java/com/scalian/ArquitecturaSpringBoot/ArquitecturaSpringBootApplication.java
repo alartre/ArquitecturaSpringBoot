@@ -1,6 +1,8 @@
 package com.scalian.ArquitecturaSpringBoot;
 
+import com.scalian.ArquitecturaSpringBoot.model.entity.Libro;
 import com.scalian.ArquitecturaSpringBoot.model.entity.Persona;
+import com.scalian.ArquitecturaSpringBoot.repository.LibroRepository;
 import com.scalian.ArquitecturaSpringBoot.repository.PersonaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +17,10 @@ public class ArquitecturaSpringBootApplication {
 	}
 
     @Bean
-    public CommandLineRunner init(PersonaRepository repositorio) {
+    public CommandLineRunner init(LibroRepository repositorio) {
         return args -> {
-            repositorio.save(new Persona(null, "Álvaro", 30));
-            repositorio.save(new Persona(null, "Lucía", 25));
+            repositorio.save(new Libro(null, "El señor de los anillos", "J. R. R. Tolkien", 1392));
+            repositorio.save(new Libro(null, "Harry Potter", "J. K. Rowling", 3872));
         };
     }
 
