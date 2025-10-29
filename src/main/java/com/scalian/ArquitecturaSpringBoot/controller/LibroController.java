@@ -3,7 +3,10 @@ package com.scalian.ArquitecturaSpringBoot.controller;
 import com.scalian.ArquitecturaSpringBoot.model.dto.LibroDTO;
 import com.scalian.ArquitecturaSpringBoot.model.entity.Libro;
 import com.scalian.ArquitecturaSpringBoot.service.LibroService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,18 +30,28 @@ public class LibroController {
     private final LibroService libroService;
 
     @PostMapping
-    public Libro crearLibro(@RequestBody LibroDTO libroDTO) {
+    public Libro crearLibro(@Valid @RequestBody LibroDTO libroDTO) {
         return libroService.crearLibro(libroDTO);
     }
 
+//    @GetMapping
+//    public List<LibroDTO> listarLibros() {
+//        return libroService.listarLibros();
+//    }
+
     @GetMapping
-    public List<LibroDTO> listarLibros() {
-        return libroService.listarLibros();
+    public Page<LibroDTO> listarLibros(Pageable pageable) {
+        return libroService.listarLibrosPaginado(pageable);
     }
 
+//    @GetMapping("/buscar")
+//    public List<LibroDTO> buscarPorAutor(String autor) {
+//        return libroService.buscarPorAutor(autor);
+//    }
+
     @GetMapping("/buscar")
-    public List<LibroDTO> buscarPorAutor(String autor) {
-        return libroService.buscarPorAutor(autor);
+    public Page<LibroDTO> buscarPorAutor(String autor, Pageable pageable) {
+        return libroService.buscarPorAutorPaginado(autor, pageable);
     }
 
     @GetMapping("/mayores")
